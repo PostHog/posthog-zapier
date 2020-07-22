@@ -1,26 +1,37 @@
 {
-  "name": "posthog-zapier",
-  "version": "1.0.0",
-  "description": "Zapier integration for PostHog.",
-  "license": "MIT",
-  "main": "index.js",
-  "scripts": {
-    "clean": "rimraf ./lib ./build",
-    "build": "npm run clean && tsc",
-    "watch": "npm run clean && tsc --watch",
-    "test": "npm run build && jest --testTimeout 10000 --rootDir ./lib/test",
-    "push": "npm run build && zapier test && zapier push"
-  },
-  "dependencies": {
-    "zapier-platform-core": "10.0.1"
-  },
-  "devDependencies": {
-    "@types/jest": "^25.2.1",
-    "@types/node": "^13.13.5",
-    "jest": "^25.5.3",
-    "prettier": "^2.0.5",
-    "rimraf": "^3.0.2",
-    "typescript": "^3.9.7"
-  },
-  "private": true
+    "name": "posthog-zapier",
+    "version": "1.0.0",
+    "description": "Zapier integration for PostHog.",
+    "license": "MIT",
+    "main": "index.js",
+    "scripts": {
+        "clean": "rimraf ./lib ./build",
+        "build": "npm run clean && tsc",
+        "watch": "npm run clean && tsc --watch",
+        "test": "npm run build && jest --testTimeout 10000 --rootDir ./lib/test",
+        "push": "npm run build && zapier test && zapier push"
+    },
+    "dependencies": {
+        "zapier-platform-core": "10.0.1"
+    },
+    "devDependencies": {
+        "@types/jest": "^25.2.1",
+        "@types/node": "^13.13.5",
+        "husky": "^4.2.5",
+        "jest": "^25.5.3",
+        "lint-staged": "^10.2.11",
+        "prettier": "^2.0.5",
+        "rimraf": "^3.0.2",
+        "typescript": "^3.9.7"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{ts,js,json}": "prettier --write",
+        "*.ts": "tsc --noEmit"
+    },
+    "private": true
 }
