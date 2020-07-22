@@ -1,33 +1,56 @@
-# posthog-zapier
+# PostHog x Zapier
 
-These are what you normally do next:
+Make the best use of your data. Connect PostHog with *thousands* of services through Zapier.
 
-```bash
-# Install dependencies
-yarn
+## Using PostHog Cloud?
 
-# Run tests
-zapier test
+Use [our official Zapier app](https://zapier.com/apps/posthog/), no configuration needed.  
 
-# Register the integration on Zapier if you haven't
-zapier register "App Title"
+## Running a self-hosted PostHog solution?
 
-# Or you can link to an existing integration on Zapier
-zapier link
+Not a problem. Create a private Zapier integration just for your instance with this package.  
+It's only a few steps:
 
-# Push it to Zapier
-zapier push
-```
+1. Fork then clone or simply download this repository.
 
-In `package.json`, we've define some commonly-used scripts:
+2. Enter its directory with `cd`.
 
-```bash
-# Watch and compile as you edit code
-yarn watch
+3. Globally install Zapier CLI.
 
-# There's also a non-watch compile command
-yarn build
+    ```bash
+    npm install -g zapier-platform-cli
+    ```
 
-# To push to Zapier, make sure you compile first
-yarn build && zapier push
-```
+4. Log into Zapier from the command line.
+
+    ```bash
+    zapier login
+    ```
+
+5. Install package dependencies.
+
+    ```bash
+    npm install
+    ```
+
+6. Either register a new integration on Zapier.
+
+    ```bash
+    zapier register "PostHog @ $YOUR_ORG"
+    ```
+    Or link to an existing one.
+    ```bash
+    zapier link
+    ```
+
+7. Push to Zapier.
+
+    ```bash
+    npm run push
+    ```
+
+## Questions?
+
+### [Join our Slack community.](https://join.slack.com/t/posthogusers/shared_invite/enQtOTY0MzU5NjAwMDY3LTc2MWQ0OTZlNjhkODk3ZDI3NDVjMDE1YjgxY2I4ZjI4MzJhZmVmNjJkN2NmMGJmMzc2N2U3Yjc3ZjI5NGFlZDQ)
+
+We're here to make sure that you have a great time.
