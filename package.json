@@ -6,9 +6,10 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./lib ./build",
-    "build": "yarn clean && tsc",
-    "watch": "yarn clean && tsc --watch",
-    "test": "yarn build && jest --testTimeout 10000 --rootDir ./lib/test"
+    "build": "npm run clean && tsc",
+    "watch": "npm run clean && tsc --watch",
+    "test": "npm run build && jest --testTimeout 10000 --rootDir ./lib/test",
+    "push": "npm run build && zapier test && zapier push"
   },
   "dependencies": {
     "zapier-platform-core": "10.0.1"
