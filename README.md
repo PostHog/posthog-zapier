@@ -49,8 +49,10 @@ It's only a few steps:
     npm run push
     ```
 
+8. Complete your integration in the [Zapier Platform dashboard](https://zapier.com/app/developer). Make sure to invite users!
+
 ## Questions?
 
 ### [Join our Slack community.](https://join.slack.com/t/posthogusers/shared_invite/enQtOTY0MzU5NjAwMDY3LTc2MWQ0OTZlNjhkODk3ZDI3NDVjMDE1YjgxY2I4ZjI4MzJhZmVmNjJkN2NmMGJmMzc2N2U3Yjc3ZjI5NGFlZDQ)
 
-We're here to make sure that you have a great time.
+We're here to make sure you have a great time.
