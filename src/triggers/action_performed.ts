@@ -6,7 +6,7 @@ const perform = async (z: ZObject, bundle: Bundle) => {
   return response.data;
 };
 
-export default {
+export const ActionPerformedTrigger = {
   key: 'action_performed',
   noun: 'Action',
 
@@ -18,8 +18,7 @@ export default {
   operation: {
     perform,
     sample: {
-      id: '1',
-      title: 'example',
+      // fields
     },
   },
 };

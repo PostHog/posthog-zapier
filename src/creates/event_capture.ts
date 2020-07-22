@@ -1,24 +1,29 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
 import { composeAPIURL } from '../utils'
 
-// You can optionally add the shape of the inputData in bundle, which will pass that
-// info down into the function and tests
-const perform = async (
-  z: ZObject,
-  bundle: Bundle<{ title: string; year: number }>
-) => {
+interface InputData {
+  event_name: string
+  user_distinct_id: string
+  timestamp: string
+  [property: string]: any
+}
+
+async function perform(z: ZObject, bundle: Bundle<InputData>) {
   const response = await z.request({
     method: 'POST',
-    url: composeAPIURL('e'),
+    url: composeAPIURL('capture'),
     body: {
-      title: bundle.inputData.title,
-      year: bundle.inputData.year,
+      event: bundle.inputData.event_name,
+      properties: {
+          distinct_id: bundle.inputData.user_distinct_id,
+      },
+      timestamp: bundle.inputData.timestamp
     },
   });
   return response.data;
 };
 
-export default {
+export const EventCaptureCreate = {
   key: 'event_capture',
   noun: 'Event',
 
@@ -34,8 +39,7 @@ export default {
       { key: 'year', type: 'integer' },
     ],
     sample: {
-      id: '1',
-      title: 'example',
+      // fields
     },
   },
 };

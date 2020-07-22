@@ -6,7 +6,7 @@ These are what you normally do next:
 
 ```bash
 # Install dependencies
-npm install  # or you can use yarn
+yarn
 
 # Run tests
 zapier test
@@ -32,11 +32,11 @@ In `package.json`, we've define some commonly-used scripts:
 
 ```bash
 # Watch and compile as you edit code
-npm run watch
+yarn watch
 
 # There's also a non-watch compile command
-npm run build
+yarn build
 
 # To push to Zapier, make sure you compile first
-npm run build && zapier push
+yarn build && zapier push
 ```

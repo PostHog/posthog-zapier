@@ -1,21 +1,23 @@
 {
   "name": "posthog-zapier",
   "version": "1.0.0",
-  "description": "",
+  "description": "Zapier integration for PostHog.",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build && jest --testTimeout 10000 --rootDir ./lib/test",
-    "build": "npm run clean && tsc",
     "clean": "rimraf ./lib ./build",
-    "watch": "npm run clean && tsc --watch"
+    "build": "yarn clean && tsc",
+    "watch": "yarn clean && tsc --watch",
+    "test": "yarn build && jest --testTimeout 10000 --rootDir ./lib/test"
   },
   "dependencies": {
     "zapier-platform-core": "10.0.1"
   },
   "devDependencies": {
-    "jest": "^25.5.3",
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.5",
+    "jest": "^25.5.3",
+    "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "typescript": "^3.9.7"
   },
