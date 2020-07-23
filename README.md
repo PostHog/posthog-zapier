@@ -4,14 +4,14 @@ Make the best use of your data. Connect PostHog with *thousands* of services thr
 
 ## Using PostHog Cloud?
 
-[Our official Zapier app](https://zapier.com/apps/posthog/) is there for you, no additional setup needed.  
+[Our official Zapier app](https://zapier.com/apps/posthog/) is there for you, no additional setup needed.
 
 ## Using a self-hosted PostHog solution?
 
 Not a problem. Create a private Zapier integration just for your instance with this package.  
 It's only a few steps:
 
-1. Fork then clone or simply download this repository.
+1. Fork then clone, or simply download this repository.
 
 2. Enter its directory with `cd`.
 
@@ -27,7 +27,7 @@ It's only a few steps:
     zapier login
     ```
 
-5. Install package dependencies.
+5. Install this project's dependencies.
 
     ```bash
     npm install
