@@ -1,4 +1,4 @@
-import { Bundle, ZObject } from 'zapier-platform-core'
+import { Bundle, HttpRequestOptions, ZObject } from 'zapier-platform-core'
 import { composeURL, composeAPIURL } from './utils'
 
 async function test(z: ZObject, bundle: Bundle) {
@@ -15,7 +15,7 @@ export const authentication = {
     type: 'custom',
     fields: [
         {
-            key: 'api_key',
+            key: 'personal_access_token',
             label: 'Personal Access Token',
             helpText: `Get your token the [Setup page](${composeURL('setup')}).`,
             required: true,
@@ -26,4 +26,12 @@ export const authentication = {
     connectionLabel: (z: ZObject, bundle: Bundle) => {
         return bundle.inputData.username
     },
+}
+
+export function includeToken(request: HttpRequestOptions, z: ZObject, bundle: Bundle): HttpRequestOptions {
+    if (bundle.authData.personal_access_token) {
+        if (!request.headers) request.headers = {}
+        request.headers['X-PAT'] = bundle.authData.personal_access_token
+    }
+    return request
 }
