@@ -5,10 +5,10 @@ async function subscribeHook(z: ZObject, bundle: Bundle) {
     // bundle.targetUrl has the Hook URL this app should call
     const data = {
         url: bundle.targetUrl,
-        id: bundle.inputData.action_id,
+        style: bundle.inputData.style,
     }
     const response = await z.request({
-        url: composeAPIURL('api/hook/'),
+        url: composeAPIURL('api/hooks'),
         method: 'POST',
         body: data,
     })
@@ -19,13 +19,13 @@ async function unsubscribeHook(z: ZObject, bundle: Bundle) {
     // bundle.subscribeData contains the parsed response JSON from the subscribe request made initially
     const hookId = bundle.subscribeData!.id
     const response = await z.request({
-        url: composeAPIURL(`api/hook/${hookId}`),
+        url: composeAPIURL(`api/hooks/${hookId}`),
         method: 'DELETE',
     })
     return response.data
 }
 
-function getActionPerformance(z: ZObject, bundle: Bundle) {
+function getActionDefinition(z: ZObject, bundle: Bundle) {
     // bundle.cleanedRequest will include the parsed JSON object (if it's not a test poll)
     // and also a .querystring property with the URL's query string
     const recipe = {
@@ -39,7 +39,7 @@ function getActionPerformance(z: ZObject, bundle: Bundle) {
     return [recipe]
 }
 
-async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundle) {
+async function getFallbackRealActionDefinition(z: ZObject, bundle: Bundle) {
     const response = await z.request({
         url: composeAPIURL('event/actions'),
         params: {
@@ -49,31 +49,24 @@ async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundle) {
     return response.data
 }
 
-export const ActionPerformedTrigger = {
-    key: 'action_performed',
+export const ActionDefinedTrigger = {
+    key: 'action_defined',
     noun: 'Action',
 
     display: {
-        label: 'Action Performed',
-        description: 'Triggers when an action is performed by a user.',
+        label: 'Action Defined',
+        description: 'Triggers when an action is defined by an administrator.',
     },
 
     operation: {
-        inputFields: [
-            {
-                key: 'action_id',
-                label: 'Action',
-                dynamic: 'action_defined.id.name',
-            },
-        ],
-
+        inputFields: [],
         type: 'hook',
 
         performSubscribe: subscribeHook,
         performUnsubscribe: unsubscribeHook,
 
-        perform: getActionPerformance,
-        performList: getFallbackRealActionPerformance,
+        perform: getActionDefinition,
+        performList: getFallbackRealActionDefinition,
 
         sample: {
             id: 1,
