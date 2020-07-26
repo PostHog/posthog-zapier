@@ -24,7 +24,7 @@ async function perform(z: ZObject, bundle: Bundle<InputData>) {
 }
 
 export const EventCaptureCreate = {
-    key: 'event_capture',
+    key: 'capture_event',
     noun: 'Event',
 
     display: {
