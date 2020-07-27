@@ -15,9 +15,9 @@ export const authentication = {
     type: 'custom',
     fields: [
         {
-            key: 'personal_access_token',
-            label: 'Personal Access Token',
-            helpText: `Get your token the [Setup page](${composeURL('setup')}).`,
+            key: 'personal_api_key',
+            label: 'Personal API Key',
+            helpText: `Get a fresh key the [Setup page](${composeURL('setup')}).`,
             required: true,
             type: 'string',
         },
@@ -29,9 +29,9 @@ export const authentication = {
 }
 
 export function includeToken(request: HttpRequestOptions, z: ZObject, bundle: Bundle): HttpRequestOptions {
-    if (bundle.authData.personal_access_token) {
+    if (bundle.authData.personal_api_key) {
         if (!request.headers) request.headers = {}
-        request.headers['X-PAT'] = bundle.authData.personal_access_token
+        request.headers['Authorization'] = `Bearer ${bundle.authData.personal_api_key}`
     }
     return request
 }
