@@ -12,29 +12,21 @@ Not a problem. Create a private Zapier integration just for your instance with t
 It's only a few steps:
 
 1. Fork then clone, or simply download this repository.
-
 2. Enter its directory with `cd`.
-
-3. Globally install Zapier CLI.
-
+3. Update `API_HOST` value in `src/settings.ts`.
+4. Globally install Zapier CLI.
     ```bash
     npm install -g zapier-platform-cli
     ```
-
-4. Log into Zapier from the command line.
-
+5. Log into Zapier from the command line.
     ```bash
     zapier login
     ```
-
-5. Install this project's dependencies.
-
+6. Install this project's dependencies.
     ```bash
     npm install
     ```
-
-6. Either register a new integration on Zapier.
-
+7. Either register a new integration on Zapier.
     ```bash
     zapier register "PostHog @ $YOUR_ORG"
     ```
@@ -42,14 +34,11 @@ It's only a few steps:
     ```bash
     zapier link
     ```
-
-7. Push to Zapier.
-
+8. Push to Zapier.
     ```bash
     npm run push
     ```
-
-8. Complete your integration in the [Zapier Platform dashboard](https://zapier.com/app/developer). Make sure to invite users!
+9. Complete your integration in the [Zapier Platform dashboard](https://zapier.com/app/developer). Make sure to invite users!
 
 ## Questions?
 
