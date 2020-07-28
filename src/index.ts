@@ -1,4 +1,3 @@
-import { Bundle, ZObject } from 'zapier-platform-core'
 import { version as platformVersion } from 'zapier-platform-core'
 
 import { authentication, includeToken } from './authentication'
