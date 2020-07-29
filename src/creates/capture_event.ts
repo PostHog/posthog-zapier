@@ -1,5 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeAPIURL } from '../utils'
+import { composeURL } from '../utils'
 
 interface InputData {
     event_name: string
@@ -11,12 +11,13 @@ interface InputData {
 async function perform(z: ZObject, bundle: Bundle<InputData>) {
     const response = await z.request({
         method: 'POST',
-        url: composeAPIURL('capture'),
+        url: composeURL('capture'),
         body: {
-            event: bundle.inputData.event_name,
+            event: bundle.inputData.event,
             properties: {
-                distinct_id: bundle.inputData.user_distinct_id,
+                distinct_id: bundle.inputData.distinct_id,
             },
+            extra_properties_json: bundle.inputData.extra_properties_json,
             timestamp: bundle.inputData.timestamp,
         },
     })
@@ -35,8 +36,19 @@ export const EventCaptureCreate = {
     operation: {
         perform,
         inputFields: [
-            { key: 'title', required: true },
-            { key: 'year', type: 'integer' },
+            { key: 'event', label: 'Event Name', required: true },
+            { key: 'distinct_id', label: 'User PostHog Distinct ID', required: true },
+            {
+                key: 'extra_properties_json',
+                label: 'Custom Event Properties',
+                helpText:
+                    'Properties in JSON format, e.g. `{ "price": 24.99 }`. Make sure that this doesn\'t end up malformed!',
+            },
+            {
+                key: 'timestamp',
+                type: 'datetime',
+                helpText: 'If not specified, moment of event capture will be assumed.',
+            },
         ],
         sample: {
             id: 1,
