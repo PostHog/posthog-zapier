@@ -1,52 +1,18 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeAPIURL } from '../utils'
-
-async function subscribeHook(z: ZObject, bundle: Bundle) {
-    // bundle.targetUrl has the Hook URL this app should call
-    const data = {
-        url: bundle.targetUrl,
-        id: bundle.inputData.action_id,
-    }
-    const response = await z.request({
-        url: composeAPIURL('api/hook/'),
-        method: 'POST',
-        body: data,
-    })
-    return response.data
-}
-
-async function unsubscribeHook(z: ZObject, bundle: Bundle) {
-    // bundle.subscribeData contains the parsed response JSON from the subscribe request made initially
-    const hookId = bundle.subscribeData!.id
-    const response = await z.request({
-        url: composeAPIURL(`api/hook/${hookId}`),
-        method: 'DELETE',
-    })
-    return response.data
-}
+import { composeAPIURL, subscribeHookCreator, unsubscribeHook } from '../utils'
 
 function getActionPerformance(z: ZObject, bundle: Bundle) {
-    // bundle.cleanedRequest will include the parsed JSON object (if it's not a test poll)
-    // and also a .querystring property with the URL's query string
-    const recipe = {
-        id: bundle.cleanedRequest.id,
-        name: bundle.cleanedRequest.name,
-        directions: bundle.cleanedRequest.directions,
-        style: bundle.cleanedRequest.style,
-        authorId: bundle.cleanedRequest.authorId,
-        createdAt: bundle.cleanedRequest.createdAt,
-    }
-    return [recipe]
+    return [bundle.cleanedRequest.data]
 }
 
 async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundle) {
     const response = await z.request({
         url: composeAPIURL('event/actions'),
-        params: {
-            orderBy: ['-timestamp'],
+        body: {
+            action_id: bundle.inputData.action_id,
         },
     })
-    return response.data
+    return (response.data as { results: object[] }).results
 }
 
 export const ActionPerformedTrigger = {
@@ -63,35 +29,38 @@ export const ActionPerformedTrigger = {
             {
                 key: 'action_id',
                 label: 'Action',
+                helpText: 'If not specified, trigger will fire when any action is performed.',
                 dynamic: 'action_defined.id.name',
             },
         ],
 
         type: 'hook',
 
-        performSubscribe: subscribeHook,
+        performSubscribe: subscribeHookCreator('action_performed', { resource_id: 'action_id' }),
         performUnsubscribe: unsubscribeHook,
 
         perform: getActionPerformance,
         performList: getFallbackRealActionPerformance,
 
         sample: {
-            id: 1,
-            name: 'Hogflix Purchase',
-            timestamp: '2077-07-04T12:00:00.123456Z',
+            id: '42-666',
+            event: {
+                id: 666,
+                distinct_id: '867499ab-c4f6-4a0d-befb-9d82fad9a73f',
+                properties: {
+                    $lib: 'web',
+                    $browser: 'Firefox',
+                    $current_url: 'https://example.comz/',
+                },
+                elements: [],
+                event: 'purchase',
+                timestamp: '1953-07-04T12:00:00.123456Z',
+                person: '867499ab-c4f6-4a0d-befb-9d82fad9a73f',
+            },
+            action: {
+                name: 'Example Purchase',
+                id: 42,
+            },
         },
-
-        // If the resource can have fields that are custom on a per-user basis, define a function to fetch the custom
-        // field definitions. The result will be used to augment the sample.
-        // outputFields: () => { return []; }
-        // Alternatively, a static field definition should be provided, to specify labels for the fields
-        outputFields: [
-            { key: 'id', label: 'ID' },
-            { key: 'createdAt', label: 'Created At' },
-            { key: 'name', label: 'Name' },
-            { key: 'directions', label: 'Directions' },
-            { key: 'authorId', label: 'Author ID' },
-            { key: 'style', label: 'Style' },
-        ],
     },
 }
