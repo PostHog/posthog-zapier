@@ -4,7 +4,8 @@ Make the best use of your data. Connect PostHog with *thousands* of services thr
 
 ## Using PostHog Cloud?
 
-[Our official Zapier app](https://zapier.com/apps/posthog/) is there for you, no additional setup needed.
+<!-- [Our official Zapier app](https://zapier.com/apps/posthog/) is there for you, no additional setup needed. -->
+Our official Zapier app is coming soon!
 
 ## Using a self-hosted PostHog solution?
 
@@ -44,4 +45,4 @@ It's only a few steps:
 
 ### [Join our Slack community.](https://join.slack.com/t/posthogusers/shared_invite/enQtOTY0MzU5NjAwMDY3LTc2MWQ0OTZlNjhkODk3ZDI3NDVjMDE1YjgxY2I4ZjI4MzJhZmVmNjJkN2NmMGJmMzc2N2U3Yjc3ZjI5NGFlZDQ)
 
-We're here to make sure you have a great time.
+We're here to help you make the best of PostHog.
