@@ -1,20 +1,18 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
 import { API_HOST } from './settings'
 
-export function composeURL(path: string, host: string = API_HOST): string {
-    return `${host.replace(/[/]+$/, '')}/${path.replace(/(^[/]+)|([/]+$)/, '')}/`
-}
-
-export function composeAPIURL(path: string, host: string = API_HOST): string {
-    return composeURL(`api/${path.replace(/(^[/]+)|([/]+$)/, '')}/`, host)
+export function composeURL(path: string[], host: string = API_HOST): string {
+    return `${host.replace(/[/]+$/, '')}/${path.map(encodeURI).join('/')}${
+        path[path.length - 1].includes('?') ? '' : '/'
+    }`
 }
 
 export function subscribeHookCreator(
     event: string,
-    reqBodyToInputDataMapping?: { [reqBodyKey: string]: any }
+    reqBodyToInputDataMapping?: { [reqBodyKey: string]: string }
 ): (z: ZObject, bundle: Bundle) => Promise<object | undefined> {
     return async function (z: ZObject, bundle: Bundle) {
-        const body: { [reqBodyKey: string]: any } = {
+        const body: { [key: string]: any } = {
             target: bundle.targetUrl,
             event,
         }
@@ -23,7 +21,7 @@ export function subscribeHookCreator(
                 body[reqBodyKey] = bundle.inputData[reqBodyToInputDataMapping[reqBodyKey]]
             }
         const response = await z.request({
-            url: composeAPIURL('hook'),
+            url: composeURL(['api', 'hooks']),
             method: 'POST',
             body,
         })
@@ -35,7 +33,7 @@ export async function unsubscribeHook(z: ZObject, bundle: Bundle): Promise<objec
     // bundle.subscribeData contains the parsed response JSON from the subscribe request made initially
     const hookId = bundle.subscribeData!.id
     const response = await z.request({
-        url: composeAPIURL(`hook/${hookId}`),
+        url: composeURL(['api', 'hooks', hookId]),
         method: 'DELETE',
     })
     return response.data

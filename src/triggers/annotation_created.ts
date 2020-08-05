@@ -1,5 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeAPIURL, subscribeHookCreator, unsubscribeHook } from '../utils'
+import { composeURL, subscribeHookCreator, unsubscribeHook } from '../utils'
 
 function getAnnotation(z: ZObject, bundle: Bundle) {
     return [bundle.cleanedRequest.data]
@@ -7,7 +7,7 @@ function getAnnotation(z: ZObject, bundle: Bundle) {
 
 async function getFallbackRealAnnotation(z: ZObject, bundle: Bundle) {
     const response = await z.request({
-        url: composeAPIURL('annotation'),
+        url: composeURL(['api', 'annotation']),
     })
     return (response.data as { results: object[] }).results
 }

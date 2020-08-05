@@ -11,7 +11,7 @@ interface InputData {
 async function perform(z: ZObject, bundle: Bundle<InputData>) {
     const response = await z.request({
         method: 'POST',
-        url: composeURL('capture'),
+        url: composeURL(['capture']),
         body: {
             event: bundle.inputData.event,
             properties: {
@@ -25,7 +25,7 @@ async function perform(z: ZObject, bundle: Bundle<InputData>) {
 }
 
 export const EventCaptureCreate = {
-    key: 'capture_event',
+    key: 'event_capture',
     noun: 'Event',
 
     display: {

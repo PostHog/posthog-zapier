@@ -7,7 +7,7 @@ import App from '../index'
 const appTester = createAppTester(App)
 tools.env.inject()
 
-describe('event_capture', () => {
+describe('capture_event', () => {
     test('capture event', async () => {
         /*
     const bundle = { inputData: { title: 'hello', year: 2020 } };

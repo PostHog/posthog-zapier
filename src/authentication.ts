@@ -1,9 +1,9 @@
 import { Bundle, HttpRequestOptions, ZObject } from 'zapier-platform-core'
-import { composeURL, composeAPIURL } from './utils'
+import { composeURL } from './utils'
 
 async function test(z: ZObject, bundle: Bundle) {
     const response = await z.request({
-        url: composeAPIURL('dashboard'),
+        url: composeURL(['api', 'dashboard']),
     })
     if (response.status === 401 || response.status === 403) {
         throw new Error('The personal access token you supplied is invalid')
@@ -17,7 +17,7 @@ export const authentication = {
         {
             key: 'personal_api_key',
             label: 'Personal API Key',
-            helpText: `Get a fresh key the [Setup page](${composeURL('setup')}).`,
+            helpText: `Get a fresh key the [Setup page](${composeURL(['setup'])}).`,
             required: true,
             type: 'string',
         },
