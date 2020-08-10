@@ -14,18 +14,18 @@ It's only a few steps:
 
 1. Clone or just download this repository.
 2. Enter its directory with `cd`.
-3. Update `API_HOST` value in `src/settings.ts`.
-4. Globally install Zapier CLI.
+3. Install this project's dependencies.
+    ```bash
+    npm install
+    ```
+4. Update `API_HOST` value in `src/settings.ts`.
+5. Globally install Zapier CLI.
     ```bash
     npm install -g zapier-platform-cli
     ```
-5. Log into Zapier from the command line.
+6. Log into Zapier from the command line.
     ```bash
     zapier login
-    ```
-6. Install this project's dependencies.
-    ```bash
-    npm install
     ```
 7. Either register a new integration on Zapier.
     ```bash
