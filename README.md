@@ -12,7 +12,7 @@ Our official Zapier app is coming soon!
 Not a problem. Create a private Zapier integration just for your instance with this package.  
 It's only a few steps:
 
-1. Fork then clone, or simply download this repository.
+1. Clone or just download this repository.
 2. Enter its directory with `cd`.
 3. Update `API_HOST` value in `src/settings.ts`.
 4. Globally install Zapier CLI.
