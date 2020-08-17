@@ -39,7 +39,7 @@ It's only a few steps:
     ```bash
     npm run push
     ```
-9. Complete your integration in the [Zapier Platform dashboard](https://zapier.com/app/developer). Make sure to invite users!
+9. Finish by filling integration details in the [Zapier Platform dashboard](https://zapier.com/app/developer), and don't forget to invite users!
 
 ## Questions?
 
