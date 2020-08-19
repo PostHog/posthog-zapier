@@ -2,23 +2,22 @@
 
 Make the best use of your data. Connect PostHog with *thousands* of services through Zapier.
 
-## Using PostHog Cloud?
+## Just want to connect PostHog with practically anything?
 
-<!-- [Our official Zapier app](https://zapier.com/apps/posthog/) is there for you, no additional setup needed. -->
-Our official Zapier app is coming soon!
+<!-- [Our official Zapier app](https://zapier.com/apps/posthog/) – compatibile with both PostHog Cloud as well as with self-hosted solutions – is here for you. No additional setup needed. -->
+Our official Zapier app – compatibile with both PostHog Cloud as well as with self-hosted solutions – is coming soon!
 
-## Using a self-hosted PostHog solution?
+## Need something just your own? Developing?
 
-Not a problem. Create a private Zapier integration just for your instance with this package.  
-It's only a few steps:
+Not a problem. Create a private Zapier app for PostHog easily with this package. It's only a few steps:
 
-1. Clone or just download this repository.
+1. Clone or download this repository.
 2. Enter its directory with `cd`.
-3. Install this project's dependencies.
+3. Install Node modules.
     ```bash
     npm install
     ```
-4. Update `API_HOST` value in `src/settings.ts`.
+4. Update `DEFAULT_API_HOST` value in `src/utils.ts`.
 5. Globally install Zapier CLI.
     ```bash
     npm install -g zapier-platform-cli
@@ -39,7 +38,7 @@ It's only a few steps:
     ```bash
     npm run push
     ```
-9. Finish by filling integration details in the [Zapier Platform dashboard](https://zapier.com/app/developer), and don't forget to invite users!
+9. Finish by filling in integration details in the [Zapier Platform dashboard](https://zapier.com/app/developer), and don't forget to invite users!
 
 ## Questions?
 
