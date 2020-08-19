@@ -17,7 +17,7 @@ export const authentication = {
         {
             key: 'personal_api_key',
             label: 'Personal API Key',
-            helpText: `Get a fresh key the [Setup page](${composeURL(['setup'])}).`,
+            helpText: `Get a fresh key from the [Setup page](${composeURL(['setup'])}).`,
             required: true,
             type: 'string',
         },
