@@ -9,15 +9,22 @@ interface InputData {
 }
 
 async function perform(z: ZObject, bundle: Bundle<InputData>) {
+    const properties: Record<string, any> = bundle.inputData.properties
+    // try to interpret property values as JSON (else keep string)
+    for (const [key, value] of Object.entries(properties)) {
+        try {
+            properties[key] = z.JSON.parse(value)
+        } catch {}
+    }
     const response = await z.request({
         method: 'POST',
         url: composeUrl(['capture'], bundle),
         body: {
-            event: bundle.inputData.event,
+            event: bundle.inputData.name,
             properties: {
+                ...properties,
                 distinct_id: bundle.inputData.distinct_id,
             },
-            extra_properties_json: bundle.inputData.extra_properties_json,
             timestamp: bundle.inputData.timestamp,
         },
     })
@@ -36,13 +43,14 @@ export const EventCaptureCreate = {
     operation: {
         perform,
         inputFields: [
-            { key: 'event', label: 'Event Name', required: true },
+            { key: 'name', label: 'Event Name', required: true },
             { key: 'distinct_id', label: 'User PostHog Distinct ID', required: true },
             {
-                key: 'extra_properties_json',
-                label: 'Custom Event Properties',
+                key: 'properties',
+                label: 'Event Properties',
+                dict: true,
                 helpText:
-                    'Properties in JSON format, e.g. `{ "price": 24.99 }`. Make sure that this doesn\'t end up malformed!',
+                    'Values (right side) will be parsed as JSON, so that e.g. `24.99` is interpreted as a number, while `"24.99"` as a string. Take caution.',
             },
             {
                 key: 'timestamp',

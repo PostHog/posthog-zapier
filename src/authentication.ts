@@ -24,7 +24,8 @@ export const authentication = {
         {
             key: 'apiHost',
             label: 'API Host',
-            helpText: `Set your own if self-hosting. Otherwise \`${DEFAULT_API_HOST}\` will be used.`,
+            helpText: `Set your own if not using PostHog Cloud.`,
+            placeholder: DEFAULT_API_HOST,
             required: false,
             type: 'string',
         },
