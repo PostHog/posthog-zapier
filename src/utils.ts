@@ -1,7 +1,10 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { API_HOST } from './settings'
 
-export function composeURL(path: string[], host: string = API_HOST): string {
+export const DEFAULT_API_HOST: string = 'app.posthog.com'
+
+export function composeUrl(path: string[], hostOrBundle: string | Bundle = DEFAULT_API_HOST): string {
+    let host: string = typeof hostOrBundle === 'object' ? (hostOrBundle as Bundle).authData.apiHost : hostOrBundle
+    if (!host.includes('://')) host = `https://${host}`
     return `${host.replace(/[/]+$/, '')}/${path.map(encodeURI).join('/')}${
         path[path.length - 1].includes('?') ? '' : '/'
     }`
@@ -17,11 +20,11 @@ export function subscribeHookCreator(
             event,
         }
         if (reqBodyToInputDataMapping)
-            for (const reqBodyKey in reqBodyToInputDataMapping) {
-                body[reqBodyKey] = bundle.inputData[reqBodyToInputDataMapping[reqBodyKey]]
+            for (const [reqBodyKey, inputDataKey] of Object.entries(reqBodyToInputDataMapping)) {
+                body[reqBodyKey] = bundle.inputData[inputDataKey]
             }
         const response = await z.request({
-            url: composeURL(['api', 'hooks']),
+            url: composeUrl(['api', 'hooks'], bundle),
             method: 'POST',
             body,
         })
@@ -33,7 +36,7 @@ export async function unsubscribeHook(z: ZObject, bundle: Bundle): Promise<objec
     // bundle.subscribeData contains the parsed response JSON from the subscribe request made initially
     const hookId = bundle.subscribeData!.id
     const response = await z.request({
-        url: composeURL(['api', 'hooks', hookId]),
+        url: composeUrl(['api', 'hooks', hookId], bundle),
         method: 'DELETE',
     })
     return response.data

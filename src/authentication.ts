@@ -1,9 +1,9 @@
 import { Bundle, HttpRequestOptions, ZObject } from 'zapier-platform-core'
-import { composeURL } from './utils'
+import { DEFAULT_API_HOST, composeUrl } from './utils'
 
 async function test(z: ZObject, bundle: Bundle) {
     const response = await z.request({
-        url: composeURL(['api', 'dashboard']),
+        url: composeUrl(['api', 'dashboard'], bundle),
     })
     if (response.status === 401 || response.status === 403) {
         throw new Error('The personal access token you supplied is invalid')
@@ -15,23 +15,30 @@ export const authentication = {
     type: 'custom',
     fields: [
         {
-            key: 'personal_api_key',
+            key: 'personalApiKey',
             label: 'Personal API Key',
-            helpText: `Get a fresh key from the [Setup page](${composeURL(['setup'])}).`,
+            helpText: `Get a fresh key from PostHog's Setup page.`,
             required: true,
+            type: 'string',
+        },
+        {
+            key: 'apiHost',
+            label: 'API Host',
+            helpText: `Set your own if self-hosting. Otherwise \`${DEFAULT_API_HOST}\` will be used.`,
+            required: false,
             type: 'string',
         },
     ],
     test,
-    connectionLabel: (z: ZObject, bundle: Bundle) => {
+    connectionLabel: (_: ZObject, bundle: Bundle) => {
         return bundle.inputData.username
     },
 }
 
 export function includeToken(request: HttpRequestOptions, z: ZObject, bundle: Bundle): HttpRequestOptions {
-    if (bundle.authData.personal_api_key) {
+    if (bundle.authData.personalApiKey) {
         if (!request.headers) request.headers = {}
-        request.headers['Authorization'] = `Bearer ${bundle.authData.personal_api_key}`
+        request.headers['Authorization'] = `Bearer ${bundle.authData.personalApiKey}`
     }
     return request
 }

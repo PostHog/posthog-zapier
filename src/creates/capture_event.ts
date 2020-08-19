@@ -1,5 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeURL } from '../utils'
+import { composeUrl } from '../utils'
 
 interface InputData {
     event_name: string
@@ -11,7 +11,7 @@ interface InputData {
 async function perform(z: ZObject, bundle: Bundle<InputData>) {
     const response = await z.request({
         method: 'POST',
-        url: composeURL(['capture']),
+        url: composeUrl(['capture'], bundle),
         body: {
             event: bundle.inputData.event,
             properties: {

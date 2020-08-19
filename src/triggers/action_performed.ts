@@ -1,5 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeURL, subscribeHookCreator, unsubscribeHook } from '../utils'
+import { composeUrl, subscribeHookCreator, unsubscribeHook } from '../utils'
 
 function getActionPerformance(z: ZObject, bundle: Bundle) {
     return [bundle.cleanedRequest.data]
@@ -8,7 +8,7 @@ function getActionPerformance(z: ZObject, bundle: Bundle) {
 async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundle) {
     const action_id = bundle.inputData.action_id
     const response = await z.request({
-        url: composeURL(['api', 'event', 'actions', action_id ? '?id=' + action_id : '']),
+        url: composeUrl(['api', 'event', 'actions', action_id ? '?id=' + action_id : ''], bundle),
     })
     return (response.data as { results: object[] }).results
 }
