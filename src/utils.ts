@@ -2,6 +2,12 @@ import { Bundle, ZObject } from 'zapier-platform-core'
 
 export const DEFAULT_API_HOST: string = 'app.posthog.com'
 
+export const TRIGGER_PREMIUM_NOTICE = {
+    key: 'premium_notice',
+    helpText: '**Important:** Triggers are a premium PostHog feature and require an enterprise license.',
+    type: 'copy',
+}
+
 export function composeUrl(path: string[], hostOrBundle: string | Bundle = DEFAULT_API_HOST): string {
     let host: string = typeof hostOrBundle === 'object' ? (hostOrBundle as Bundle).authData.apiHost : hostOrBundle
     if (!host.includes('://')) host = `https://${host}`
