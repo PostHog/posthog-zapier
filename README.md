@@ -9,7 +9,7 @@ Our official Zapier app – compatibile with both PostHog Cloud as well as with 
 
 ## Need something just your own? Developing?
 
-Not a problem. Create a private Zapier app for PostHog easily with this package. It's only a few steps:
+Not a problem. Create a private Zapier app for PostHog easily with this package. It's just a few simple steps:
 
 1. Clone or download this repository.
 2. Enter its directory with `cd`.
@@ -17,7 +17,7 @@ Not a problem. Create a private Zapier app for PostHog easily with this package.
     ```bash
     npm install
     ```
-4. Update `DEFAULT_API_HOST` value in `src/utils.ts`.
+4. Update `DEFAULT_API_HOST` value in `src/utils.ts` (e.g. for PostHog Cloud it's `app.posthog.com` and for your self-hosted instance it may be `posthog.example.com`).
 5. Globally install Zapier CLI.
     ```bash
     npm install -g zapier-platform-cli
@@ -38,7 +38,7 @@ Not a problem. Create a private Zapier app for PostHog easily with this package.
     ```bash
     npm run push
     ```
-9. Finish by filling in integration details in the [Zapier Platform dashboard](https://zapier.com/app/developer), and don't forget to invite users!
+9. Finish by filling in integration details in the [Zapier Platform dashboard](https://zapier.com/app/developer). And don't forget to invite users!
 
 ## Questions?
 
