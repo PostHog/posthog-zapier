@@ -17,7 +17,7 @@ export const authentication = {
         {
             key: 'personalApiKey',
             label: 'Personal API Key',
-            helpText: `Get a fresh key from PostHog's Setup page.`,
+            helpText: `Get a fresh key from PostHog's Setup page. More about personal API keys in [PostHog Docs](https://posthog.com/docs/api/api#personal-api-keys-recommended).`,
             required: true,
             type: 'string',
         },
