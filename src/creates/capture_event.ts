@@ -14,7 +14,9 @@ async function perform(z: ZObject, bundle: Bundle<InputData>) {
     for (const [key, value] of Object.entries(properties)) {
         try {
             properties[key] = z.JSON.parse(value)
-        } catch {}
+        } catch {
+            // if parsing fails, leave string value in place
+        }
     }
     const response = await z.request({
         method: 'POST',
@@ -50,7 +52,7 @@ export const EventCaptureCreate = {
                 label: 'Event Properties',
                 dict: true,
                 helpText:
-                    'Values (right side) will be parsed as JSON, so that e.g. `24.99` is interpreted as a number, while `"24.99"` as a string. Take caution.',
+                    'JSON parsing of values (right-hand side) will be attempted, so that e.g. `24.99` is interpreted as a number, while `"24.99"` as a string. Unparsable values will be left as strings. If you want to ensure value will stay a string, enclose it in double quotes.',
             },
             {
                 key: 'timestamp',
