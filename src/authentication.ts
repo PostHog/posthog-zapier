@@ -3,7 +3,7 @@ import { DEFAULT_API_HOST, composeUrl } from './utils'
 
 async function test(z: ZObject, bundle: Bundle) {
     const response = await z.request({
-        url: composeUrl(['api', 'dashboard'], bundle),
+        url: composeUrl(['api', 'user'], bundle),
     })
     if (response.status === 401 || response.status === 403) {
         throw new Error('The personal access token you supplied is invalid')
