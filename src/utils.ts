@@ -8,13 +8,14 @@ export const TRIGGER_PREMIUM_NOTICE = {
     type: 'copy',
 }
 
-export function composeUrl(path: string[], hostOrBundle?: string | Bundle): string {
-    let host: string =
-        (hostOrBundle as Partial<Bundle>).authData?.apiHost ?? (hostOrBundle as string) ?? DEFAULT_API_HOST
+export function composeUrl(path: string[], hostOrBundle: string | Bundle = DEFAULT_API_HOST): string {
+    let host: string | undefined =
+        typeof hostOrBundle === 'string' ? hostOrBundle : (hostOrBundle as Partial<Bundle>).authData?.apiHost
+    if (!host) host = DEFAULT_API_HOST
     if (!host.includes('://')) host = `https://${host}`
-    return `${host.replace(/[/]+$/, '')}/${path.map(encodeURI).join('/')}${
-        path[path.length - 1].includes('?') ? '' : '/'
-    }`
+    let composedUrl: string = `${host.replace(/[/]+$/, '')}/${path.map(encodeURI).join('/')}`
+    if (composedUrl[composedUrl.length - 1] !== '/' && !composedUrl.includes('?')) composedUrl += '/'
+    return composedUrl
 }
 
 export function subscribeHookCreator(
