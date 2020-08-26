@@ -4,12 +4,13 @@ export const DEFAULT_API_HOST: string = 'app.posthog.com'
 
 export const TRIGGER_PREMIUM_NOTICE = {
     key: 'premium_notice',
-    helpText: '**Important:** Triggers are a premium PostHog feature and require an enterprise license.',
+    helpText: '**Important:** Triggers are a premium PostHog feature. Make sure that you are on a paid plan.',
     type: 'copy',
 }
 
-export function composeUrl(path: string[], hostOrBundle: string | Bundle = DEFAULT_API_HOST): string {
-    let host: string = typeof hostOrBundle === 'object' ? (hostOrBundle as Bundle).authData.apiHost : hostOrBundle
+export function composeUrl(path: string[], hostOrBundle?: string | Bundle): string {
+    let host: string =
+        (hostOrBundle as Partial<Bundle>).authData?.apiHost ?? (hostOrBundle as string) ?? DEFAULT_API_HOST
     if (!host.includes('://')) host = `https://${host}`
     return `${host.replace(/[/]+$/, '')}/${path.map(encodeURI).join('/')}${
         path[path.length - 1].includes('?') ? '' : '/'
