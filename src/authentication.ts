@@ -32,7 +32,7 @@ export const authentication = {
     ],
     test,
     connectionLabel: (_: ZObject, bundle: Bundle) => {
-        return bundle.authData.apiHost !== DEFAULT_API_HOST ? bundle.authData.apiHost.split('://')[1] : null
+        return bundle.authData.apiHost === DEFAULT_API_HOST ? 'Cloud' : bundle.authData.apiHost.split('://')[1]
     },
 }
 
