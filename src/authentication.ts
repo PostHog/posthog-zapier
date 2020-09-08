@@ -1,5 +1,5 @@
 import { Bundle, HttpRequestOptions, ZObject } from 'zapier-platform-core'
-import { DEFAULT_API_HOST, composeUrl } from './utils'
+import { DEFAULT_API_HOST, DEFAULT_LABEL, composeUrl } from './utils'
 
 async function test(z: ZObject, bundle: Bundle) {
     const response = await z.request({
@@ -32,7 +32,7 @@ export const authentication = {
     ],
     test,
     connectionLabel: (_: ZObject, bundle: Bundle) => {
-        return bundle.authData.apiHost === DEFAULT_API_HOST ? 'Cloud' : bundle.authData.apiHost.split('://')[1]
+        return bundle.authData.apiHost === DEFAULT_API_HOST ? DEFAULT_LABEL : bundle.authData.apiHost.split('://')[1]
     },
 }
 
