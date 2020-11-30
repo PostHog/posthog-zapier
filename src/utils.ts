@@ -10,12 +10,22 @@ export const TRIGGER_PREMIUM_NOTICE = {
     type: 'copy',
 }
 
-export function composeUrl(path: string[], hostOrBundle: string | Bundle = DEFAULT_API_HOST): string {
+export const PROJECT_FIELD = {
+    key: 'project_id',
+    label: 'Project',
+    required: true,
+    dynamic: 'project_created.id.name',
+    altersDynamicFields: true,
+}
+
+export function composeUrl(path: (string | number)[], hostOrBundle: string | Bundle = DEFAULT_API_HOST): string {
     let host: string | undefined =
         typeof hostOrBundle === 'string' ? hostOrBundle : (hostOrBundle as Partial<Bundle>).authData?.apiHost
     if (!host) host = DEFAULT_API_HOST
     if (!host.includes('://')) host = `https://${host}`
-    let composedUrl: string = `${host.replace(/[/]+$/, '')}/${path.map(encodeURI).join('/')}`
+    let composedUrl: string = `${host.replace(/[/]+$/, '')}/${path
+        .map((component) => encodeURI(component.toString()))
+        .join('/')}`
     if (composedUrl[composedUrl.length - 1] !== '/' && !composedUrl.includes('?')) composedUrl += '/'
     return composedUrl
 }
@@ -34,7 +44,7 @@ export function subscribeHookCreator(
                 body[reqBodyKey] = bundle.inputData[inputDataKey]
             }
         const response = await z.request({
-            url: composeUrl(['api', 'hooks'], bundle),
+            url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'hooks'], bundle),
             method: 'POST',
             body,
         })
