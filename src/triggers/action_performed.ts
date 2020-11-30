@@ -1,5 +1,11 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeUrl, subscribeHookCreator, unsubscribeHook, TRIGGER_PREMIUM_NOTICE } from '../utils'
+import {
+    composeUrl,
+    subscribeHookCreator,
+    unsubscribeHook,
+    TRIGGER_PREMIUM_NOTICE_FIELD,
+    PROJECT_FIELD,
+} from '../utils'
 
 function getActionPerformance(z: ZObject, bundle: Bundle) {
     return [bundle.cleanedRequest.data]
@@ -24,7 +30,8 @@ export const ActionPerformedTrigger = {
 
     operation: {
         inputFields: [
-            TRIGGER_PREMIUM_NOTICE,
+            TRIGGER_PREMIUM_NOTICE_FIELD,
+            PROJECT_FIELD,
             {
                 key: 'action_id',
                 label: 'Action',

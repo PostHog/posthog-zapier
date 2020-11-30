@@ -3,7 +3,7 @@ import { Bundle, ZObject } from 'zapier-platform-core'
 export const DEFAULT_API_HOST: string = 'app.posthog.com' // something like: posthog.hogflix.com
 export const DEFAULT_LABEL: string = 'Cloud' // something like: Hogflix
 
-export const TRIGGER_PREMIUM_NOTICE = {
+export const TRIGGER_PREMIUM_NOTICE_FIELD = {
     key: 'premium_notice',
     helpText:
         '**Important:** Triggers are a premium PostHog feature. Make sure that you are on a paid plan, otherwise simply nothing will happen.',

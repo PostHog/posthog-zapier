@@ -1,5 +1,11 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeUrl, subscribeHookCreator, unsubscribeHook, TRIGGER_PREMIUM_NOTICE } from '../utils'
+import {
+    composeUrl,
+    subscribeHookCreator,
+    unsubscribeHook,
+    TRIGGER_PREMIUM_NOTICE_FIELD,
+    PROJECT_FIELD,
+} from '../utils'
 
 function getActionDefinition(z: ZObject, bundle: Bundle) {
     return [bundle.cleanedRequest.data]
@@ -7,7 +13,7 @@ function getActionDefinition(z: ZObject, bundle: Bundle) {
 
 async function getFallbackRealActionDefinition(z: ZObject, bundle: Bundle) {
     const response = await z.request({
-        url: composeUrl(['api', 'action'], bundle),
+        url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'actions'], bundle),
     })
     return (response.data as { results: object[] }).results
 }
@@ -22,7 +28,7 @@ export const ActionDefinedTrigger = {
     },
 
     operation: {
-        inputFields: [TRIGGER_PREMIUM_NOTICE],
+        inputFields: [TRIGGER_PREMIUM_NOTICE_FIELD, PROJECT_FIELD],
         type: 'hook',
 
         performSubscribe: subscribeHookCreator('action_defined'),

@@ -1,5 +1,11 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeUrl, subscribeHookCreator, unsubscribeHook, TRIGGER_PREMIUM_NOTICE } from '../utils'
+import {
+    composeUrl,
+    subscribeHookCreator,
+    unsubscribeHook,
+    TRIGGER_PREMIUM_NOTICE_FIELD,
+    PROJECT_FIELD,
+} from '../utils'
 
 function getAnnotation(z: ZObject, bundle: Bundle) {
     return [bundle.cleanedRequest.data]
@@ -22,7 +28,7 @@ export const AnnotationCreatedTrigger = {
     },
 
     operation: {
-        inputFields: [TRIGGER_PREMIUM_NOTICE],
+        inputFields: [TRIGGER_PREMIUM_NOTICE_FIELD, PROJECT_FIELD],
         type: 'hook',
 
         performSubscribe: subscribeHookCreator('annotation_created'),
