@@ -1,13 +1,13 @@
 {
-  "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "lib": ["esnext"],
-    "outDir": "./lib",
-    "rootDir": "./src",
-    "strict": true
-  }
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "lib": ["esnext"],
+        "outDir": "./lib",
+        "rootDir": "./src",
+        "strict": true
+    }
 }

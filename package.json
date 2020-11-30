@@ -9,7 +9,8 @@
         "build": "npm run clean && tsc",
         "watch": "npm run clean && tsc --watch",
         "test": "npm run build && jest --testTimeout 10000 --rootDir ./lib/test",
-        "push": "npm run build && zapier test && zapier push && node postPush"
+        "push": "npm run build && zapier test && zapier push && node postPush",
+        "format": "prettier . --write"
     },
     "dependencies": {
         "zapier-platform-core": "10.1.1"

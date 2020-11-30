@@ -1,10 +1,11 @@
 # PostHog x Zapier
 
-Make the best use of your data. Connect PostHog with *thousands* of services through Zapier.
+Make the best use of your data. Connect PostHog with _thousands_ of services through Zapier.
 
 ## Just want to connect PostHog with practically anything?
 
 <!-- [Our official Zapier app](https://zapier.com/apps/posthog/) – compatibile with both PostHog Cloud as well as with self-hosted solutions – is here for you. No additional setup needed. -->
+
 Our official Zapier app – compatibile with both PostHog Cloud as well as with self-hosted solutions – is coming soon!
 
 ## Need something just your own? Developing?
