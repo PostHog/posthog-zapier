@@ -21,7 +21,6 @@ export default {
         [AnnotationCreatedTrigger.key]: AnnotationCreatedTrigger,
     },
     creates: {
-        // Disabled as capture endpoint needs per-project rework
-        // [EventCaptureCreate.key]: EventCaptureCreate,
+        [EventCaptureCreate.key]: EventCaptureCreate,
     },
 }

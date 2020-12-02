@@ -1,5 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeUrl } from '../utils'
+import { composeUrl, PROJECT_FIELD } from '../utils'
 
 interface InputData {
     event_name: string
@@ -22,6 +22,8 @@ async function perform(z: ZObject, bundle: Bundle<InputData>) {
         method: 'POST',
         url: composeUrl(['capture'], bundle),
         body: {
+            api_key: bundle.authData.personalApiKey,
+            project_id: bundle.inputData.project_id,
             event: bundle.inputData.name,
             properties: {
                 ...properties,
@@ -45,6 +47,7 @@ export const EventCaptureCreate = {
     operation: {
         perform,
         inputFields: [
+            PROJECT_FIELD,
             { key: 'name', label: 'Event Name', required: true },
             { key: 'distinct_id', label: 'User PostHog Distinct ID', required: true },
             {
