@@ -6,9 +6,9 @@ export const ProjectCreatedTrigger = {
     noun: 'Project',
 
     display: {
+        hidden: true,
         label: 'Project Created',
         description: 'Triggers when a new project is created or becomes accessible.',
-        hidden: true,
     },
 
     operation: {

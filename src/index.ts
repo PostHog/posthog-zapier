@@ -17,8 +17,7 @@ export default {
     triggers: {
         [ProjectCreatedTrigger.key]: ProjectCreatedTrigger,
         [ActionDefinedTrigger.key]: ActionDefinedTrigger,
-        // action performed temporarily out, as we can't match events to actions live with ClickHouse yet
-        // [ActionPerformedTrigger.key]: ActionPerformedTrigger,
+        [ActionPerformedTrigger.key]: ActionPerformedTrigger,
         [AnnotationCreatedTrigger.key]: AnnotationCreatedTrigger,
     },
     creates: {
