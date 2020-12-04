@@ -2,11 +2,20 @@
 
 Make the best use of your data. Connect PostHog with _thousands_ of services through Zapier.
 
+The following steps are at your disposal:
+
+Type    | Name               | Plan Required
+:------ | :----------------- | :------------------
+Action  | Capture Event      | Any, including free
+Trigger | Action Performed   | Any **paid** plan
+Trigger | Action Defined     | Any **paid** plan
+Trigger | Annotation Created | Any **paid** plan
+
 ## Just want to connect PostHog with practically anything?
 
-<!-- [Our official Zapier app](https://zapier.com/apps/posthog/) – compatibile with both PostHog Cloud as well as with self-hosted solutions – is here for you. No additional setup needed. -->
+[Our official Zapier app](https://zapier.com/apps/posthog/integrations) – compatible with PostHog Cloud as well as with self-hosted solutions – is here for you. No additional setup needed.
 
-Our official Zapier app – compatibile with both PostHog Cloud as well as with self-hosted solutions – is coming soon!
+Try it out now: https://zapier.com/apps/posthog/integrations  
 
 ## Need something just your own? Developing?
 
