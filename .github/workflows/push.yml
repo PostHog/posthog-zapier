@@ -11,16 +11,18 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
+            - name: Install package.json dependencies with npm
+              run: npm install
+
             - name: Configure Zapier deploy key
               run: 'echo "{ \"deployKey\": \"$ZAPIER_DEPLOY_KEY\" }" > ~/.zapierrc'
+              env:
+                ZAPIER_DEPLOY_KEY: ${{ secrets.ZAPIER_DEPLOY_KEY }}
 
             - name: Set up Node 14
               uses: actions/setup-node@v1
               with:
                   node-version: 14
-
-            - name: Install package.json dependencies with npm
-              run: npm install
 
             - name: Push integration to Zapier
               run: npm run push
