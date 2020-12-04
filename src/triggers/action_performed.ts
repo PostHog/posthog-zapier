@@ -24,8 +24,6 @@ export const ActionPerformedTrigger = {
     noun: 'Action',
 
     display: {
-        // temporarily hidden, as we can't match events to actions live with ClickHouse yet
-        hidden: true,
         label: 'Action Performed',
         description: 'Triggers when an action is performed by a user.',
     },
