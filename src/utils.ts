@@ -1,7 +1,9 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
 
-export const DEFAULT_API_HOST: string = 'app.posthog.com' // something like: posthog.hogflix.com
-export const DEFAULT_LABEL: string = 'Cloud' // something like: Hogflix
+export const POSTHOG_CLOUD_HOST: string = 'app.posthog.com' // DO NOT CHANGE
+
+export const DEFAULT_API_HOST: string = POSTHOG_CLOUD_HOST // you can change something like: posthog.hogflix.com
+export const DEFAULT_LABEL: string = 'Cloud' // you can change to something like: Hogflix
 
 export const TRIGGER_PREMIUM_NOTICE_FIELD = {
     key: 'premium_notice',

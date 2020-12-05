@@ -1,5 +1,5 @@
 import { Bundle, HttpRequestOptions, ZObject } from 'zapier-platform-core'
-import { DEFAULT_API_HOST, DEFAULT_LABEL, composeUrl } from './utils'
+import { DEFAULT_API_HOST, DEFAULT_LABEL, POSTHOG_CLOUD_HOST, composeUrl } from './utils'
 
 async function test(z: ZObject, bundle: Bundle) {
     const response = await z.request({
@@ -17,14 +17,16 @@ export const authentication = {
         {
             key: 'personalApiKey',
             label: 'Personal API Key',
-            helpText: `Get a fresh key from PostHog's Setup page. More about personal API keys in [PostHog Docs](https://posthog.com/docs/api/overview#personal-api-keys-recommended).`,
+            helpText: `Get a fresh key from the My Settings page in PostHog. More about personal API keys in [PostHog Docs](https://posthog.com/docs/api/overview#personal-api-keys-recommended).`,
             required: true,
             type: 'string',
         },
         {
             key: 'apiHost',
             label: 'API Host',
-            helpText: `Set your own if not using PostHog Cloud.`,
+            helpText: `Set your own if not connecting with ${
+                DEFAULT_API_HOST === POSTHOG_CLOUD_HOST ? 'PostHog Cloud' : 'the default host'
+            }.`,
             placeholder: DEFAULT_API_HOST,
             required: false,
             type: 'string',
