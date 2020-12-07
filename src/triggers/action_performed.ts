@@ -49,24 +49,17 @@ export const ActionPerformedTrigger = {
         performList: getFallbackRealActionPerformance,
 
         sample: {
-            id: '42-666',
-            event: {
-                id: 666,
-                distinct_id: '867499ab-c4f6-4a0d-befb-9d82fad9a73f',
-                properties: {
-                    $lib: 'web',
-                    $browser: 'Firefox',
-                    $current_url: 'https://example.comz/',
-                },
-                elements: [],
-                event: 'purchase',
-                timestamp: '1953-07-04T12:00:00.123456Z',
-                person: '867499ab-c4f6-4a0d-befb-9d82fad9a73f',
+            id: 666,
+            distinct_id: '867499ab-c4f6-4a0d-befb-9d82fad9a73f',
+            properties: {
+                $lib: 'web',
+                $browser: 'Firefox',
+                $current_url: 'https://example.comz/',
             },
-            action: {
-                name: 'Example Purchase',
-                id: 42,
-            },
+            elements: [],
+            event: 'purchase',
+            timestamp: '1953-07-04T12:00:00.123456Z',
+            person: '867499ab-c4f6-4a0d-befb-9d82fad9a73f',
         },
     },
 }
