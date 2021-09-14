@@ -1,6 +1,6 @@
 {
     "name": "posthog-zapier",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "description": "Zapier integration for PostHog.",
     "private": true,
     "license": "MIT",
