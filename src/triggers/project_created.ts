@@ -14,7 +14,7 @@ export const ProjectCreatedTrigger = {
     operation: {
         perform: async (z: ZObject, bundle: Bundle) => {
             const response = await z.request({
-                url: composeUrl(['api', 'user'], bundle),
+                url: composeUrl(['api', 'users', '@me'], bundle),
             })
             return (response.data as { teams: { id: number; name: string }[] }).teams
         },
