@@ -3,7 +3,7 @@ import { DEFAULT_API_HOST, DEFAULT_LABEL, POSTHOG_CLOUD_HOST, composeUrl } from 
 
 async function test(z: ZObject, bundle: Bundle) {
     const response = await z.request({
-        url: composeUrl(['api', 'user'], bundle),
+        url: composeUrl(['api', 'users', '@me'], bundle),
     })
     if (response.status === 401 || response.status === 403) {
         throw new Error('The personal access token you supplied is invalid')
