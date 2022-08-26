@@ -17,7 +17,7 @@ jobs:
             - name: Configure Zapier deploy key
               run: 'echo "{ \"deployKey\": \"$ZAPIER_DEPLOY_KEY\" }" > ~/.zapierrc'
               env:
-                ZAPIER_DEPLOY_KEY: ${{ secrets.ZAPIER_DEPLOY_KEY }}
+                  ZAPIER_DEPLOY_KEY: ${{ secrets.ZAPIER_DEPLOY_KEY }}
 
             - name: Set up Node 14
               uses: actions/setup-node@v1
