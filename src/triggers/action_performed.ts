@@ -14,9 +14,9 @@ function getActionPerformance(_: ZObject, bundle: Bundle) {
 async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundle) {
     const action_id = bundle.inputData.action_id
     const response = await z.request({
-        url: composeUrl(['api', 'event', `?action_id=${action_id}`], bundle),
+        url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'events', `?action_id=${action_id}`], bundle),
     })
-    return (response.data as { results: object[] }).results
+    return (response.data as { results: Record<string, any>[] }).results
 }
 
 export const ActionPerformedTrigger = {
