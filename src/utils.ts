@@ -3,12 +3,12 @@ import { Bundle, ZObject } from 'zapier-platform-core'
 export const POSTHOG_CLOUD_HOST: string = 'app.posthog.com' // DO NOT CHANGE
 
 export const DEFAULT_API_HOST: string = POSTHOG_CLOUD_HOST // you can change something like: posthog.hogflix.com
-export const DEFAULT_LABEL: string = 'Cloud' // you can change to something like: Hogflix
+export const DEFAULT_LABEL: string = 'PostHog Cloud' // you can change to something like: Hogflix
 
 export const TRIGGER_PREMIUM_NOTICE_FIELD = {
     key: 'premium_notice',
     helpText:
-        '**Important:** Triggers are a premium PostHog feature. Make sure that you are on a paid plan, otherwise simply nothing will happen.',
+        '**Important:** Triggers are a premium PostHog feature. Make sure that you are on a paid plan, otherwise the trigger will not fire.',
     type: 'copy',
 }
 
