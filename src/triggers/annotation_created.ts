@@ -1,4 +1,16 @@
-import { unsubscribeHook, TRIGGER_PREMIUM_NOTICE_FIELD, ORGANIZATION_AND_PROJECTS_FIELDS } from '../utils'
+import { Bundle, ZObject } from 'zapier-platform-core'
+import { unsubscribeHook, ORGANIZATION_AND_PROJECTS_FIELDS, composeUrl } from '../utils'
+
+function getAnnotation(z: ZObject, bundle: Bundle) {
+    return [bundle.cleanedRequest.data]
+}
+
+async function getFallbackRealAnnotation(z: ZObject, bundle: Bundle) {
+    const response = await z.request({
+        url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'annotations'], bundle),
+    })
+    return (response.data as { results: object[] }).results
+}
 
 export const AnnotationCreatedTrigger = {
     key: 'annotation_created',
@@ -25,5 +37,8 @@ export const AnnotationCreatedTrigger = {
             throw new Error('Annotation Created triggers can no longer be subscribed to.')
         },
         performUnsubscribe: unsubscribeHook,
+
+        perform: getAnnotation,
+        performList: getFallbackRealAnnotation,
     },
 }
