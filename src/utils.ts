@@ -12,13 +12,23 @@ export const TRIGGER_PREMIUM_NOTICE_FIELD = {
     type: 'copy',
 }
 
-export const PROJECT_FIELD = {
+const ORGANIZATION_FIELD = {
+    key: 'organization_id',
+    label: 'Organization',
+    required: true,
+    dynamic: 'organization_created.id.name',
+    altersDynamicFields: true,
+}
+
+const PROJECT_FIELD = {
     key: 'project_id',
     label: 'Project',
     required: true,
     dynamic: 'project_created.id.name',
     altersDynamicFields: true,
 }
+
+export const ORGANIZATION_AND_PROJECTS_FIELDS = [ORGANIZATION_FIELD, PROJECT_FIELD] as const
 
 export function composeUrl(path: (string | number)[], hostOrBundle: string | Bundle = DEFAULT_API_HOST): string {
     let host: string | undefined =

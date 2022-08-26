@@ -4,7 +4,7 @@ import {
     subscribeHookCreator,
     unsubscribeHook,
     TRIGGER_PREMIUM_NOTICE_FIELD,
-    PROJECT_FIELD,
+    ORGANIZATION_AND_PROJECTS_FIELDS,
 } from '../utils'
 
 function getActionPerformance(_: ZObject, bundle: Bundle) {
@@ -31,7 +31,7 @@ export const ActionPerformedTrigger = {
     operation: {
         inputFields: [
             TRIGGER_PREMIUM_NOTICE_FIELD,
-            PROJECT_FIELD,
+            ...ORGANIZATION_AND_PROJECTS_FIELDS,
             {
                 key: 'action_id',
                 label: 'Calculated Event',

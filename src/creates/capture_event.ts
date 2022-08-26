@@ -1,5 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import { composeUrl, PROJECT_FIELD } from '../utils'
+import { composeUrl, ORGANIZATION_AND_PROJECTS_FIELDS } from '../utils'
 
 interface InputData {
     event_name: string
@@ -47,7 +47,7 @@ export const EventCaptureCreate = {
     operation: {
         perform,
         inputFields: [
-            PROJECT_FIELD,
+            ...ORGANIZATION_AND_PROJECTS_FIELDS,
             { key: 'name', label: 'Event Name', required: true },
             { key: 'distinct_id', label: 'User PostHog Distinct ID', required: true },
             {

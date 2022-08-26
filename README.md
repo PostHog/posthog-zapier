@@ -7,9 +7,7 @@ The following steps are at your disposal:
 | Type    | Name               | Plan Required       |
 | :------ | :----------------- | :------------------ |
 | Action  | Capture Event      | Any, including free |
-| Trigger | Action Performed   | Any **paid** plan   |
-| Trigger | Action Defined     | Any **paid** plan   |
-| Trigger | Annotation Created | Any **paid** plan   |
+| Trigger | Calculated Event Captured   | Any **paid** plan   |
 
 ## Just want to connect PostHog with practically anything?
 

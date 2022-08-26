@@ -4,7 +4,7 @@ import {
     subscribeHookCreator,
     unsubscribeHook,
     TRIGGER_PREMIUM_NOTICE_FIELD,
-    PROJECT_FIELD,
+    ORGANIZATION_AND_PROJECTS_FIELDS,
 } from '../utils'
 
 function getActionDefinition(z: ZObject, bundle: Bundle) {
@@ -23,12 +23,13 @@ export const ActionDefinedTrigger = {
     noun: 'Action',
 
     display: {
+        hidden: true,
         label: 'Action Defined',
         description: 'Triggers when an action is defined by a team member.',
     },
 
     operation: {
-        inputFields: [TRIGGER_PREMIUM_NOTICE_FIELD, PROJECT_FIELD],
+        inputFields: [TRIGGER_PREMIUM_NOTICE_FIELD, ...ORGANIZATION_AND_PROJECTS_FIELDS],
         type: 'hook',
 
         performSubscribe: subscribeHookCreator('action_defined'),
