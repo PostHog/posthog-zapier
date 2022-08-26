@@ -37,9 +37,9 @@ describe('composeUrl', () => {
         expect(composedAPIURL).toEqual('http://posthog.company.com/api/bar/?id=2&foo=bar')
     })
     test('compose URL API from bundle', () => {
-        const composedAPIURL: string = composeUrl(['api', 'bar', '?id=2&foo=bar'], ({
+        const composedAPIURL: string = composeUrl(['api', 'bar', '?id=2&foo=bar'], {
             authData: { apiHost: 'posthog.company.com' },
-        } as unknown) as Bundle)
+        } as unknown as Bundle)
         expect(composedAPIURL).toEqual('https://posthog.company.com/api/bar/?id=2&foo=bar')
     })
 })
