@@ -7,7 +7,7 @@ import {
     ORGANIZATION_AND_PROJECTS_FIELDS,
 } from '../utils'
 
-function getActionPerformance(_: ZObject, bundle: Bundle) {
+function getActionPerformance(z: ZObject, bundle: Bundle) {
     return [bundle.cleanedRequest.data]
 }
 
@@ -21,11 +21,11 @@ async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundle) {
 
 export const ActionPerformedTrigger = {
     key: 'action_performed',
-    noun: 'Calculated Event',
+    noun: 'Action',
 
     display: {
-        label: 'Calculated Event Captured',
-        description: 'Triggers when the specified calculated event is captured.',
+        label: 'Action Performed',
+        description: 'Triggers when an action is performed by a user.',
     },
 
     operation: {
@@ -34,7 +34,7 @@ export const ActionPerformedTrigger = {
             ...ORGANIZATION_AND_PROJECTS_FIELDS,
             {
                 key: 'action_id',
-                label: 'Calculated Event',
+                label: 'Action',
                 required: true,
                 dynamic: 'action_defined.id.name',
             },
