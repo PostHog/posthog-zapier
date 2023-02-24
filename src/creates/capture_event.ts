@@ -36,7 +36,7 @@ async function perform(z: ZObject, bundle: Bundle<InputData>) {
             properties: {
                 ...properties,
                 distinct_id: bundle.inputData.distinct_id,
-                $lib: 'posthog-zapier',
+                $lib: 'zapier',
             },
             timestamp: bundle.inputData.timestamp,
         },
