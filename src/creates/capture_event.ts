@@ -1,5 +1,6 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
 import { composeUrl, ORGANIZATION_AND_PROJECTS_FIELDS } from '../utils'
+import { TeamBasicType } from '../types'
 
 interface InputData {
     event_name: string
@@ -18,16 +19,24 @@ async function perform(z: ZObject, bundle: Bundle<InputData>) {
             // if parsing fails, leave string value in place
         }
     }
+
+    // Retrieve the api_token for this project
+    const project = await z.request({
+        method: 'GET',
+        url: composeUrl(['api', 'projects', bundle.inputData.project_id], bundle),
+    })
+    const token = (project.data as TeamBasicType).api_token
+
     const response = await z.request({
         method: 'POST',
         url: composeUrl(['capture'], bundle),
         body: {
-            api_key: bundle.authData.personalApiKey,
-            project_id: bundle.inputData.project_id,
+            api_key: token,
             event: bundle.inputData.name,
             properties: {
                 ...properties,
                 distinct_id: bundle.inputData.distinct_id,
+                $lib: 'zapier',
             },
             timestamp: bundle.inputData.timestamp,
         },

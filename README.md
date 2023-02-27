@@ -4,10 +4,10 @@ Make the best use of your data. Connect PostHog with _thousands_ of services thr
 
 The following steps are at your disposal:
 
-| Type    | Name               | Plan Required       |
-| :------ | :----------------- | :------------------ |
-| Action  | Capture Event      | Any, including free |
-| Trigger | Calculated Event Captured   | Any **paid** plan   |
+| Type    | Name                      | Plan Required       |
+| :------ | :------------------------ | :------------------ |
+| Action  | Capture Event             | Any, including free |
+| Trigger | Calculated Event Captured | Any **paid** plan   |
 
 ## Just want to connect PostHog with practically anything?
 
