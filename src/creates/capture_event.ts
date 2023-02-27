@@ -10,7 +10,7 @@ interface InputData {
 }
 
 async function perform(z: ZObject, bundle: Bundle<InputData>) {
-    const properties: Record<string, any> = bundle.inputData.properties
+    const properties: Record<string, any> = bundle.inputData.properties ?? {}
     // try to interpret property values as JSON (else keep string)
     for (const [key, value] of Object.entries(properties)) {
         try {
