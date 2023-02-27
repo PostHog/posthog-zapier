@@ -24,9 +24,7 @@ export const authentication = {
         {
             key: 'apiHost',
             label: 'API Host',
-            helpText: `Set your own if not connecting with ${
-                DEFAULT_API_HOST === POSTHOG_CLOUD_HOST ? 'PostHog Cloud' : 'the default host'
-            }.`,
+            helpText: `The default is PostHog Cloud US. Set to \`eu.posthog.com\` for PostHog Cloud EU, or to your own host for a self-hosted instance.`,
             placeholder: DEFAULT_API_HOST,
             required: false,
             type: 'string',
