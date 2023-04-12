@@ -35,6 +35,8 @@ export const ActionPerformedTrigger = {
             {
                 key: 'action_id',
                 label: 'Action',
+                helpText:
+                    'Make sure you have actions defined in /data-management/actions. [See PostHog Docs.](https://posthog.com/docs/data/actions)',
                 required: true,
                 dynamic: 'action_defined.id.name',
             },
