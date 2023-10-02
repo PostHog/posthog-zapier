@@ -11,12 +11,38 @@ function getActionPerformance(z: ZObject, bundle: Bundle) {
     return [bundle.cleanedRequest.data]
 }
 
-async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundle) {
+export async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundle) {
     const action_id = bundle.inputData.action_id
-    const response = await z.request({
-        url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'events', `?action_id=${action_id}`], bundle),
+    const eventsResponse = await z.request({
+        url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'query'], bundle),
+        method: 'POST',
+        body: {
+            query: {
+                kind: 'EventsQuery',
+                select: ['*', 'person'],
+                actionId: action_id,
+                after: 'all',
+                limit: 3,
+                orderBy: ['timestamp DESC'],
+            },
+        },
     })
-    return (response.data as { results: Record<string, any>[] }).results
+    // we need to transform the response from the events query to look like
+    // the one from an actual "rest webhook" call
+    const response = (eventsResponse.data.results as Record<string, any>[][]).map((row) => {
+        const { uuid, team_id, distinct_id, elements, elements_chain: _unused, ...event } = row[0]
+        const person = row[1]
+        return {
+            eventUuid: uuid,
+            teamId: team_id,
+            distinctId: distinct_id,
+            elementsList: elements,
+            ...event,
+            person,
+        } as Record<string, any>
+    })
+
+    return response
 }
 
 export const ActionPerformedTrigger = {
