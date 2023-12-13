@@ -5,13 +5,6 @@ export const POSTHOG_CLOUD_HOST: string = 'app.posthog.com' // DO NOT CHANGE
 export const DEFAULT_API_HOST: string = POSTHOG_CLOUD_HOST // You can change to something like: posthog.hogflix.com
 export const DEFAULT_LABEL: string = 'PostHog Cloud' // You can change to something like: Hogflix
 
-export const TRIGGER_PREMIUM_NOTICE_FIELD = {
-    key: 'premium_notice',
-    helpText:
-        '**Important:** Triggers are a premium PostHog feature. Make sure that you are on a paid plan, otherwise the trigger will not fire.',
-    type: 'copy',
-}
-
 const ORGANIZATION_FIELD = {
     key: 'organization_id',
     label: 'Organization',

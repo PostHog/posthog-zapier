@@ -1,11 +1,5 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
-import {
-    composeUrl,
-    subscribeHookCreator,
-    unsubscribeHook,
-    TRIGGER_PREMIUM_NOTICE_FIELD,
-    ORGANIZATION_AND_PROJECTS_FIELDS,
-} from '../utils'
+import { composeUrl, subscribeHookCreator, unsubscribeHook, ORGANIZATION_AND_PROJECTS_FIELDS } from '../utils'
 
 function getActionDefinition(z: ZObject, bundle: Bundle) {
     return [bundle.cleanedRequest.data]
@@ -29,7 +23,7 @@ export const ActionDefinedTrigger = {
     },
 
     operation: {
-        inputFields: [TRIGGER_PREMIUM_NOTICE_FIELD, ...ORGANIZATION_AND_PROJECTS_FIELDS],
+        inputFields: ORGANIZATION_AND_PROJECTS_FIELDS,
         type: 'hook',
 
         performSubscribe: subscribeHookCreator('action_defined'),
