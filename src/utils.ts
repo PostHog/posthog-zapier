@@ -61,8 +61,8 @@ export async function unsubscribeHook(z: ZObject, bundle: Bundle): Promise<objec
     // bundle.subscribeData contains the parsed response JSON from the subscribe request made initially
     const hookId = bundle.subscribeData!.id
     const response = await z.request({
-        url: composeUrl(['api', 'hooks', hookId], bundle),
-        method: 'DELETE',
-    })
+            url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'hooks', hookId], bundle),
+            method: 'DELETE',
+        })
     return response.data
 }
