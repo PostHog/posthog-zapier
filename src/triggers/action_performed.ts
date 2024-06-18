@@ -15,7 +15,7 @@ export async function getFallbackRealActionPerformance(z: ZObject, bundle: Bundl
                 kind: 'EventsQuery',
                 select: ['*', 'person'],
                 actionId: action_id,
-                after: 'all',
+                after: '-30d',
                 limit: 3,
                 orderBy: ['timestamp DESC'],
             },
