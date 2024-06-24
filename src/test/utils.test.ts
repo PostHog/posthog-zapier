@@ -5,8 +5,8 @@ import { Bundle } from 'zapier-platform-core'
 
 describe('composeUrl', () => {
     test('compose URL 1', () => {
-        const composedURL: string = composeUrl(['setup'], 'https://app.posthog.com/')
-        expect(composedURL).toEqual('https://app.posthog.com/setup/')
+        const composedURL: string = composeUrl(['setup'], 'https://us.posthog.com/')
+        expect(composedURL).toEqual('https://us.posthog.com/setup/')
     })
     test('compose URL 2', () => {
         const composedURL: string = composeUrl(['foo', 'bar bar'], 'https://company.com/posthog/')
@@ -17,8 +17,8 @@ describe('composeUrl', () => {
         expect(composedURL).toEqual('https://company.com/posthog/foo/3/bar%20bar/')
     })
     test('compose URL API 1', () => {
-        const composedAPIURL: string = composeUrl(['api', 'hook'], 'https://app.posthog.com/')
-        expect(composedAPIURL).toEqual('https://app.posthog.com/api/hook/')
+        const composedAPIURL: string = composeUrl(['api', 'hook'], 'https://us.posthog.com/')
+        expect(composedAPIURL).toEqual('https://us.posthog.com/api/hook/')
     })
     test('compose URL API 2', () => {
         const composedAPIURL: string = composeUrl(['api', 'bar', 'foo'], 'https://company.com/posthog')
