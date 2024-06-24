@@ -26,7 +26,7 @@ export const authentication = {
             // NOTE: If user is logged into `eu.` and not `us.`, they will be auto-redirected to the logged-in region
             helpText:
                 'Create a fresh key in the "Personal API keys" section of PostHog settings ' +
-                '[from this link](https://us.posthog.com/project/2/settings/user-api-keys).',
+                '[from this link](https://us.posthog.com/project/2/settings/user-api-keys?preset=zapier).',
             required: true,
             type: 'string',
         },
