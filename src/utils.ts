@@ -1,9 +1,10 @@
 import { Bundle, ZObject } from 'zapier-platform-core'
 
-export const POSTHOG_CLOUD_HOST: string = 'app.posthog.com' // DO NOT CHANGE
+export const POSTHOG_CLOUD_US_HOST: string = 'us.posthog.com'
+export const POSTHOG_CLOUD_US_LEGACY_HOST: string = 'app.posthog.com'
+export const POSTHOG_CLOUD_EU_HOST: string = 'eu.posthog.com'
 
-export const DEFAULT_API_HOST: string = POSTHOG_CLOUD_HOST // You can change to something like: posthog.hogflix.com
-export const DEFAULT_LABEL: string = 'PostHog Cloud' // You can change to something like: Hogflix
+export const DEFAULT_API_HOST = POSTHOG_CLOUD_US_HOST
 
 const ORGANIZATION_FIELD = {
     key: 'organization_id',
@@ -61,8 +62,8 @@ export async function unsubscribeHook(z: ZObject, bundle: Bundle): Promise<objec
     // bundle.subscribeData contains the parsed response JSON from the subscribe request made initially
     const hookId = bundle.subscribeData!.id
     const response = await z.request({
-            url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'hooks', hookId], bundle),
-            method: 'DELETE',
-        })
+        url: composeUrl(['api', 'projects', bundle.inputData.project_id, 'hooks', hookId], bundle),
+        method: 'DELETE',
+    })
     return response.data
 }

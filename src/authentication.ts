@@ -1,5 +1,11 @@
 import { Bundle, HttpRequestOptions, ZObject } from 'zapier-platform-core'
-import { DEFAULT_API_HOST, DEFAULT_LABEL, POSTHOG_CLOUD_HOST, composeUrl } from './utils'
+import {
+    DEFAULT_API_HOST,
+    POSTHOG_CLOUD_EU_HOST,
+    POSTHOG_CLOUD_US_HOST,
+    POSTHOG_CLOUD_US_LEGACY_HOST,
+    composeUrl,
+} from './utils'
 
 async function test(z: ZObject, bundle: Bundle) {
     const response = await z.request({
@@ -17,14 +23,17 @@ export const authentication = {
         {
             key: 'personalApiKey',
             label: 'Personal API Key',
-            helpText: `Get a fresh key from the My Settings page in PostHog. More about personal API keys in [PostHog Docs](https://posthog.com/docs/api/overview#personal-api-keys-recommended).`,
+            // NOTE: If user is logged into `eu.` and not `us.`, they will be auto-redirected to the logged-in region
+            helpText:
+                'Create a fresh key in the "Personal API keys" section of PostHog settings ' +
+                '[from this link](https://us.posthog.com/project/2/settings/user-api-keys).',
             required: true,
             type: 'string',
         },
         {
             key: 'apiHost',
             label: 'API Host',
-            helpText: `The default is PostHog Cloud US. Set to \`eu.posthog.com\` for PostHog Cloud EU, or to your own host for a self-hosted instance.`,
+            helpText: `The default is PostHog Cloud US. For PostHog Cloud EU, set \`${POSTHOG_CLOUD_EU_HOST}\`. For a self-hosted hobby deployment, set your instance's public host.`,
             placeholder: DEFAULT_API_HOST,
             required: false,
             type: 'string',
@@ -32,7 +41,15 @@ export const authentication = {
     ],
     test,
     connectionLabel: (_: ZObject, bundle: Bundle) => {
-        return bundle.authData.apiHost === DEFAULT_API_HOST ? DEFAULT_LABEL : bundle.authData.apiHost.split('://')[1]
+        switch (bundle.authData.apiHost) {
+            case POSTHOG_CLOUD_US_HOST:
+            case POSTHOG_CLOUD_US_LEGACY_HOST:
+                return 'PostHog Cloud US'
+            case POSTHOG_CLOUD_EU_HOST:
+                return 'PostHog Cloud EU'
+            default:
+                return bundle.authData.apiHost.split('://')[1]
+        }
     },
 }
 
