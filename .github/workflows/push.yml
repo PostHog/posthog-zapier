@@ -9,7 +9,7 @@ jobs:
         name: Push integration to Zapier
         runs-on: ubuntu-20.04
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
 
             - name: Install package.json dependencies with npm
               run: npm install
@@ -20,7 +20,7 @@ jobs:
                   ZAPIER_DEPLOY_KEY: ${{ secrets.ZAPIER_DEPLOY_KEY }}
 
             - name: Set up Node 14
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1.4.6
               with:
                   node-version: 14
 
